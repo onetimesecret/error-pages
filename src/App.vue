@@ -1,44 +1,52 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 
-const title = ref('Site Maintenance')
-const message = ref('We are currently performing scheduled maintenance. Your secrets are resting quietly. Please check back soon.')
-const estimatedTime = ref('2 hours')
-const startTime = ref(new Date().getTime())
-const endTime = ref(new Date().getTime() + 2 * 60 * 60 * 1000) // 2 hours from now
+const title = ref('Site Maintenance');
+const message = ref('We are currently performing scheduled maintenance. Please check back soon.');
+
+/**
+ * Progress Bar
+ *
+ */
+const estimatedTime = ref('2 hours');
+const startTime = ref(new Date().getTime());
+const endTime = ref(new Date().getTime() + 2 * 60 * 60 * 1000); // 2 hours from now
+
+const progress = computed(() => {
+  const now = new Date().getTime();
+  return Math.min(100, Math.max(0, ((now - startTime.value) / (endTime.value - startTime.value)) * 100));
+})
+
+
+
+/**
+ * Languages
+ *
+ */
+const currentLang = ref('en')
 
 const languages = [
   { code: 'en', name: 'English' },
   { code: 'es', name: 'Español' },
   { code: 'fr', name: 'Français' },
 ]
-const currentLang = ref('en')
 
-const progress = computed(() => {
-  const now = new Date().getTime()
-  return Math.min(100, Math.max(0, ((now - startTime.value) / (endTime.value - startTime.value)) * 100))
-})
-
-/**
- * Languages
- *
- */
 const switchLanguage = (lang: string) => {
   currentLang.value = lang
   // Here you would typically update your translations
   // For this example, we'll just change the title
   if (lang === 'es') {
-    title.value = 'Mantenimiento del Sitio'
+    title.value = 'Mantenimiento del Sitio';
   } else if (lang === 'fr') {
-    title.value = 'Maintenance du Site'
+    title.value = 'Maintenance du Site';
   } else {
-    title.value = 'Site Maintenance'
+    title.value = 'Site Maintenance';
   }
 }
 
 // Watch for changes in the current language
 watch(currentLang, (lang) => {
-  switchLanguage(lang)
+  switchLanguage(lang);
 })
 
 
@@ -50,28 +58,28 @@ watch(currentLang, (lang) => {
 const isDarkMode = ref(false)
 
 const toggleDarkMode = () => {
-  isDarkMode.value = !isDarkMode.value
-  updateDarkMode()
+  isDarkMode.value = !isDarkMode.value;
+  updateDarkMode();
 }
 
 const updateDarkMode = () => {
   if (isDarkMode.value) {
-    document.documentElement.classList.add('dark')
+    document.documentElement.classList.add('dark');
   } else {
-    document.documentElement.classList.remove('dark')
+    document.documentElement.classList.remove('dark');
   }
 }
 
 // Initialize dark mode based on user preference
-isDarkMode.value = window.matchMedia('(prefers-color-scheme: dark)').matches
-updateDarkMode()
+isDarkMode.value = window.matchMedia('(prefers-color-scheme: dark)').matches;
+updateDarkMode();
 
 // Watch for changes in system preference
 watch(
   () => window.matchMedia('(prefers-color-scheme: dark)').matches,
   (isDark) => {
-    isDarkMode.value = isDark
-    updateDarkMode()
+    isDarkMode.value = isDark;
+    updateDarkMode();
   }
 )
 
