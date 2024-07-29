@@ -1,8 +1,15 @@
 import { expect, test } from '@playwright/test'
 
-// See here how to get started:
-// https://playwright.dev/docs/intro
-test('visits the app root url', async ({ page }) => {
+test('maintenance mode page displays correctly', async ({ page }) => {
   await page.goto('/')
-  await expect(page.locator('div.greetings > h1')).toHaveText('You did it!')
+
+  // Check if the logo is visible
+  await expect(page.locator('svg[baseProfile="tiny-ps"][version="1.2"].mx-auto.h-12.w-12.text-brand-500')).toBeVisible()
+  await expect(page.locator('svg.mx-auto.h-12.w-12.text-brand-500')).toBeVisible()
+
+  // Check if the title is correct
+  await expect(page.locator('h1')).toHaveText('Site Maintenance')
+
+  // Check if the card component is present
+  await expect(page.locator('.bg-white.shadow-lg.rounded-lg')).toBeVisible()
 })

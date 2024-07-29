@@ -59,7 +59,7 @@ const formattedProgress = computed(() => progress.value.toFixed(1))
         role="progressbar"
       />
     </div>
-    <p class="text-xs text-gray-500 dark:text-gray-400">
+    <p class="dark:text-gray-400 text-xs text-gray-500">
       {{ formattedProgress }}% {{ t('complete') }}
     </p>
   </div>
