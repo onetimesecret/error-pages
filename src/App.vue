@@ -1,26 +1,12 @@
+<!-- App.vue -->
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import ProgressBar from '@/components/ProgressBar.vue'
 
 const { t, locale } = useI18n()
 
-/**
- * Progress Bar
- */
 const estimatedTime = ref('2 hours')
-const startTime = ref(new Date().getTime())
-const endTime = ref(new Date().getTime() + 2 * 60 * 60 * 1000) // 2 hours from now
-
-const progress = computed(() => {
-  const now = new Date().getTime()
-  return Math.min(
-    100,
-    Math.max(
-      0,
-      ((now - startTime.value) / (endTime.value - startTime.value)) * 100,
-    ),
-  )
-})
 
 /**
  * Languages
@@ -97,28 +83,15 @@ watch(
           <p class="text-lg">
             {{ t('message') }}
           </p>
-          <p class="text-sm">
-            {{ t('estimatedTime') }}:
-            <span class="font-medium">{{ estimatedTime }}</span>
-          </p>
-          <div class="w-full h-2.5 rounded-full bg-gray-200 dark:bg-gray-700">
-            <div
-              class="h-2.5 rounded-full transition-all duration-500 bg-brand-500 ease-out"
-              :style="{ width: `${progress}%` }"
-              :aria-valuenow="progress"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              role="progressbar"
-            />
-          </div>
+          <ProgressBar :estimated-time="estimatedTime" />
         </div>
         <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <p class="text-base font-medium text-brand-500">
+          <p class="text-base text-brand-500 font-medium">
             {{ t('thankYou') }}
           </p>
           <a
             href="https://status.onetimesecret.com"
-            class="text-sm text-brand-500 mt-2 inline-block transition-colors duration-300 hover:text-brand-600"
+            class="text-brand-500 text-sm mt-2 inline-block transition-colors duration-300 hover:text-brand-600"
           >
             {{ t('statusPage') }}
           </a>
@@ -128,7 +101,7 @@ watch(
         <button
           v-for="lang in languages"
           :key="lang.code"
-          class="rounded-full px-3 py-1 text-sm transition-colors duration-300"
+          class="text-sm transition-colors duration-300 rounded-full px-3 py-1"
           :class="locale === lang.code
             ? 'bg-brand-500 text-white'
             : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -139,7 +112,7 @@ watch(
           {{ lang.name }}
         </button>
         <button
-          class="absolute rounded-full bg-gray-200 transition-colors dark:bg-gray-700 right-4 top-4 p-2 text-gray-800 duration-200 dark:text-gray-200"
+          class="absolute rounded-full transition-colors bg-gray-200 dark:bg-gray-700 right-4 top-4 p-2 text-gray-800 duration-200 dark:text-gray-200"
           :aria-label="t('toggleDarkMode')"
           @click="toggleDarkMode"
         >
