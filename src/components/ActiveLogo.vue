@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+
 const props = defineProps({
   pulseRate: {
     type: Number,
-    default: 2
-  }
+    default: 2,
+  },
 })
 const animationDuration = computed(() => `${props.pulseRate}s`)
-
 </script>
 
 <template>
