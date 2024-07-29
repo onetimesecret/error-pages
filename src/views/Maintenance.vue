@@ -41,7 +41,7 @@ watch(locale, (newLocale) => {
 <template>
   <!-- Main content -->
   <main class="flex-grow">
-    <div class="flex min-h-screen px-4 items-center justify-center sm:px-6 lg:px-8">
+    <div class="flex min-h-screen px-4 items-start justify-center sm:px-6 lg:px-8 pt-40">
       <div class="w-full max-w-md space-y-8">
         <div class="text-center">
           <ActiveLogo
