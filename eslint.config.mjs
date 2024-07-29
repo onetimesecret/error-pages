@@ -26,7 +26,7 @@
  *        eslint-disable-next-line ts/consistent-type-definitions
  *
  */
-import antfu from '@antfu/eslint-config'
+import antfu from '@antfu/eslint-config';
 
 export default antfu({
   // Type of the project. 'lib' for libraries, the default is 'app'
@@ -36,10 +36,11 @@ export default antfu({
   // stylistic: true,
 
   // Or customize the stylistic rules
-  // stylistic: {
-  //   indent: 2, // 4, or 'tab'
-  //   quotes: 'single', // or 'double'
-  // },
+  stylistic: {
+    indent: 2, // 4, or 'tab'
+    quotes: 'single', // or 'double',
+    semi: true,
+  },
 
   // To enable UnoCSS support, you need to explicitly turn it on:
   unocss: true,
@@ -48,4 +49,4 @@ export default antfu({
   ignores: [
     // Add your ignore patterns here
   ],
-})
+});

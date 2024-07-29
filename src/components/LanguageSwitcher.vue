@@ -1,22 +1,22 @@
 <!-- LanguageSwitcher.vue -->
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n';
 
 defineProps<{
-  languages: { code: string, name: string, flag: string }[]
-  currentLocale: string
-}>()
+  languages: { code: string; name: string; flag: string }[];
+  currentLocale: string;
+}>();
 
 const emit = defineEmits<{
-  (e: 'switchLanguage', lang: string): void
-}>()
+  (e: 'switchLanguage', lang: string): void;
+}>();
 
-const { t, locale } = useI18n()
+const { t, locale } = useI18n();
 
 function switchLanguage(lang: string) {
-  locale.value = lang
-  emit('switchLanguage', lang)
-  document.documentElement.lang = lang
+  locale.value = lang;
+  emit('switchLanguage', lang);
+  document.documentElement.lang = lang;
 }
 </script>
 

@@ -1,16 +1,16 @@
 <!-- DarkModeToggle.vue -->
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n';
 
 defineProps<{
-  isDarkMode: boolean
-}>()
+  isDarkMode: boolean;
+}>();
 
 const emit = defineEmits<{
-  (e: 'toggleDarkMode'): void
-}>()
+  (e: 'toggleDarkMode'): void;
+}>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 </script>
 
 <template>

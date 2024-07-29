@@ -1,5 +1,5 @@
 // uno.config.ts
-import { defineConfig } from 'unocss'
+import { defineConfig } from 'unocss';
 
 export default defineConfig({
   // Add your UnoCSS configuration here
@@ -17,4 +17,4 @@ export default defineConfig({
   rules: [
     // Add custom rules here
   ],
-})
+});

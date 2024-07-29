@@ -1,4 +1,4 @@
-import { createI18n } from 'vue-i18n'
+import { createI18n } from 'vue-i18n';
 
 const messages = {
   en: {
@@ -43,11 +43,11 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: 'Retour à l\'accueil',
   },
-}
+};
 
 export const i18n = createI18n({
   legacy: false,
   locale: 'en',
   fallbackLocale: 'en',
   messages,
-})
+});

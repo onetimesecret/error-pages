@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 const props = defineProps({
   pulseRate: {
     type: Number,
     default: 2,
   },
-})
-const animationDuration = computed(() => `${props.pulseRate}s`)
+});
+const animationDuration = computed(() => `${props.pulseRate}s`);
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const animationDuration = computed(() => `${props.pulseRate}s`)
     baseProfile="tiny-ps"
     version="1.2"
     xmlns="http://www.w3.org/2000/svg"
-    class="mx-auto h-12 w-12 text-brand-500"
+    class="mx-auto text-brand-500 h-12 w-12"
     width="48"
     height="48"
     viewBox="0 0 1445 1445"

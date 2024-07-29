@@ -20,21 +20,21 @@ model: claude-3.5-sonnet
 >
 > ```vue
 > <script setup lang="ts">
-> import { ref } from 'vue'
+> import { ref } from 'vue';
 >
-> const title = ref('Site Maintenance')
-> const message = ref('We are currently performing scheduled maintenance. Please check back soon.')
-> const estimatedTime = ref('2 hours')
+> const title = ref('Site Maintenance');
+> const message = ref('We are currently performing scheduled maintenance. Please check back soon.');
+> const estimatedTime = ref('2 hours');
 > </script>
 >
 > <template>
->   <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+>   <div class="min-h-screen bg-gray-100 flex flex-col justify-center py-6 sm:py-12">
 >     <div class="relative py-3 sm:max-w-xl sm:mx-auto">
->       <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl" />
->       <div class="relative shadow-lg sm:rounded-3xl px-4 py-10 bg-white sm:p-20">
+>       <div class="absolute shadow-lg inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl" />
+>       <div class="relative shadow-lg sm:rounded-3xl px-4 bg-white py-10 sm:p-20">
 >         <div class="max-w-md mx-auto">
 >           <div class="divide-y divide-gray-200">
->             <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+>             <div class="text-base text-gray-700 py-8 leading-6 space-y-4 sm:text-lg sm:leading-7">
 >               <h1 class="text-3xl font-extrabold text-gray-900">
 >                 {{ title }}
 >               </h1>
@@ -91,7 +91,7 @@ model: claude-3.5-sonnet
 >        extend: {},
 >      },
 >      plugins: [],
->    }
+>    };
 >    ```
 >
 > 5. Add Tailwind directives to your CSS in `./src/assets/main.css`:

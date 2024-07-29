@@ -1,8 +1,8 @@
-import defaultTheme from 'tailwindcss/defaultTheme'
-import typography from '@tailwindcss/typography'
-import forms from '@tailwindcss/forms'
+import defaultTheme from 'tailwindcss/defaultTheme';
+import typography from '@tailwindcss/typography';
+import forms from '@tailwindcss/forms';
 
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 export default {
   content: [
@@ -82,4 +82,4 @@ export default {
     ],
   },
   plugins: [],
-} satisfies Config
+} satisfies Config;
