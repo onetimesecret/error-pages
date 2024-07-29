@@ -15,7 +15,7 @@ const { t } = useI18n()
 
 <template>
   <button
-    class="rounded-full bg-gray-200 transition-colors dark:bg-gray-700 p-2 text-gray-800 duration-200 dark:text-gray-200"
+    class="transition-colors rounded-full bg-gray-200 dark:bg-gray-700 p-2 text-gray-800 duration-200 dark:text-gray-200"
     :aria-label="t('toggleDarkMode')"
     @click="emit('toggleDarkMode')"
   >

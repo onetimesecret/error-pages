@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import ActiveLogo from '@/components/ActiveLogo.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import DarkModeToggle from '@/components/DarkModeToggle.vue'
@@ -77,12 +78,7 @@ watch(
     <div class="flex min-h-screen justify-center px-4 items-center sm:px-6 lg:px-8">
       <div class="max-w-md w-full space-y-8">
         <div class="text-center">
-          <img
-            id="logo"
-            src="./assets/img/onetime-logo-v3-xl.svg"
-            class="mx-auto h-12 w-12 animate-pulse text-brand-500"
-            :alt="t('logoAlt')"
-          >
+          <ActiveLogo class="mx-auto h-12 w-12 text-brand-500" :pulse-rate="3" />
 
           <h1 class="text-3xl font-extrabold text-gray-900 mt-6 dark:text-white">
             {{ t('title') }}

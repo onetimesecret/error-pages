@@ -25,7 +25,7 @@ function switchLanguage(lang: string) {
     <button
       v-for="lang in languages"
       :key="lang.code"
-      class="rounded-full transition-colors px-3 py-1 text-sm duration-300"
+      class="rounded-full transition-colors text-sm duration-300 px-3 py-1"
       :class="locale === lang.code
         ? 'bg-brand-500 text-white'
         : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
