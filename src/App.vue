@@ -3,11 +3,12 @@
 import { ref, watch } from 'vue';
 import DarkModeToggle from '@/components/DarkModeToggle.vue';
 import Footer from '@/components/Footer.vue';
+import { storage } from '@/stores/prefs';
 
 /**
  * Darkmode
  */
-const isDarkMode = ref(false);
+const isDarkMode = ref(document.documentElement.classList.contains('dark'));
 
 function toggleDarkMode() {
   isDarkMode.value = !isDarkMode.value;
@@ -15,18 +16,9 @@ function toggleDarkMode() {
 }
 
 function updateDarkMode() {
-  const el = document.documentElement.classList;
-  if (isDarkMode.value) {
-    el.add('dark');
-  }
-  else {
-    el.remove('dark');
-  }
+  document.documentElement.classList.toggle('dark', isDarkMode.value);
+  storage.set('darkMode', isDarkMode.value.toString());
 }
-
-// Initialize dark mode based on user preference
-isDarkMode.value = window.matchMedia('(prefers-color-scheme: dark)').matches;
-updateDarkMode();
 
 // Watch for changes in system preference
 watch(

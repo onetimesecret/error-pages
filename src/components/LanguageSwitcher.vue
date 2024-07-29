@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { storage } from '@/stores/prefs';
+import { i18n } from '@/i18n';
 
 const props = defineProps<{
   languages: { code: string; name: string; flag: string; region: string }[];
@@ -44,6 +46,8 @@ function toggleDropdown() {
 }
 
 // Update the openDropdown function to set initial focus
+// Add this new computed property
+const flattenedLanguages = computed(() => Object.values(groupedLanguages.value).flat());
 function openDropdown() {
   isOpen.value = true;
   nextTick(() => {
@@ -64,13 +68,12 @@ function closeDropdown(event?: MouseEvent) {
 
 function switchLanguage(lang: string) {
   locale.value = lang;
+  i18n.global.locale.value = lang;
   emit('switchLanguage', lang);
   document.documentElement.lang = lang;
+  storage.set('language', lang);
   closeDropdown();
 }
-
-// Add this new computed property
-const flattenedLanguages = computed(() => Object.values(groupedLanguages.value).flat());
 
 // Update these functions
 function focusNext() {
@@ -129,14 +132,14 @@ watch(isOpen, (newValue) => {
 </script>
 
 <template>
-  <div class="w-full max-w-md mx-auto">
-    <h2 class="text-lg font-bold text-brand-500 mb-4">
+  <div class="max-w-md mx-auto w-full">
+    <h2 class="font-bold text-lg text-brand-500 mb-4">
       {{ t('languages') }}
     </h2>
     <div class="relative">
       <button
         ref="dropdownButton"
-        class="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
+        class="w-full flex px-4 text-gray-700 bg-white dark:text-gray-200 items-center justify-between py-2 text-sm font-medium border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 dark:bg-gray-800 dark:border-gray-600"
         aria-haspopup="listbox"
         :aria-expanded="isOpen"
         @click="toggleDropdown"
@@ -162,10 +165,10 @@ watch(isOpen, (newValue) => {
         leave-from-class="transform opacity-100 scale-100"
         leave-to-class="transform opacity-0 scale-95"
       >
-        <div v-if="isOpen" class="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg dark:bg-gray-800">
+        <div v-if="isOpen" class="absolute w-full bg-white rounded-md shadow-lg dark:bg-gray-800 z-10 mt-1">
           <ul
             ref="dropdownList"
-            class="py-1 overflow-auto text-base rounded-md max-h-60 focus:outline-none sm:text-sm"
+            class="text-base rounded-md focus:outline-none py-1 overflow-auto max-h-60 sm:text-sm"
             tabindex="-1"
             role="listbox"
             @keydown.enter.prevent="selectFocusedOption"
@@ -175,13 +178,13 @@ watch(isOpen, (newValue) => {
             @keydown.up.prevent="focusPrev"
           >
             <template v-for="(group, groupName) in groupedLanguages" :key="groupName">
-              <li class="px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
+              <li class="py-2 px-3 text-xs font-semibold text-gray-500 dark:text-gray-400">
                 {{ groupName }}
               </li>
               <li
                 v-for="lang in group"
                 :key="lang.code"
-                class="flex items-center px-4 py-2 text-gray-900 cursor-pointer select-none hover:bg-brand-500 hover:text-white dark:text-gray-200 dark:hover:bg-brand-600"
+                class="flex items-center px-4 py-2 text-gray-900 dark:text-gray-200 cursor-pointer select-none hover:bg-brand-500 hover:text-white dark:hover:bg-brand-600"
                 :class="{
                   'bg-brand-500 text-white': props.currentLocale === lang.code,
                   'bg-brand-100 dark:bg-brand-700': focusedIndex === flattenedLanguages.indexOf(lang),
