@@ -122,7 +122,7 @@ const messages = {
     bouton: 'Retour à la page d\'accueil',
     complet: 'Terminé',
   },
-  hi_IN:
+  hi:
   {
     logoAlt: 'Onetime Secret Logo',
     title: 'साइट मेंटेनेंस',
@@ -137,7 +137,7 @@ const messages = {
     button: 'होमपेज पर जाएं',
     complete: 'पूर्ण',
   },
-  zh_CN:
+  zh:
   {
     logoAlt: 'Onetime Secret Logo',
     title: '网站维护',
@@ -152,7 +152,7 @@ const messages = {
     button: '返回主页',
     complete: '完成',
   },
-  jp:
+  ja:
   {
     logoAlt: 'Onetime Secret Logo',
     title: 'サイトメンテナンス',

@@ -16,7 +16,17 @@ const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'fr_CA', name: 'Français canadien', flag: '🇨🇦' },
+  { code: 'fr_CH', name: 'Français suisse', flag: '🇨🇭' },
+  { code: 'hi', name: 'Hindi', flag: '🇮🇳' },
+  { code: 'zh', name: 'Mandarin', flag: '🇨🇳' },
+  { code: 'ja', name: 'Japanese', flag: '🇯🇵' },
+  { code: 'bg', name: 'Bulgarian', flag: '🇧🇬' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
 ];
+
+
 
 // Update document lang attribute when locale changes
 function switchLanguage(lang: string) {
