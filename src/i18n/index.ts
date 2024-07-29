@@ -14,6 +14,7 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: 'Back to home',
     complete: 'Complete',
+    languages: 'Languages',
   },
 
   es: {
@@ -29,6 +30,7 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: 'Volver al inicio',
     complete: 'Completo',
+    languages: 'Idiomas',
   },
 
   fr: {
@@ -45,6 +47,7 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: 'Retour à l\'accueil',
     complete: 'Complet',
+    languages: 'Langues',
   },
 
   de: {
@@ -60,6 +63,7 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: 'Zur Startseite zurück',
     complete: 'Fertiggestellt',
+    languages: 'Sprachen',
   },
 
   nl: {
@@ -75,6 +79,7 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: 'Terug naar de homepage',
     complete: 'Voltooid',
+    languages: 'Talen',
   },
   bg: {
     logoAlt: 'Логотип Onetime Secret',
@@ -89,38 +94,41 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: 'Нажмите тук за да видите домашна страница',
     complete: 'Завръшено',
+    languages: 'Езици',
   },
 
   fr_CA:
   {
     logoAlt: 'Logo Secret Onetime',
-    titre: 'Entretien du site web',
+    title: 'Entretien du site web',
     message: 'Nous effectuons actuellement une maintenance planifiée. Veuillez revenir dans quelques instants.',
-    duréeEstimer: 'Durée estimée',
-    merci: 'Merci pour votre patience.',
-    pageStatut: 'Consultez notre page de statut pour les mises à jour',
-    basculerLangues: 'Basculer la langue vers {lang}',
-    basculerModeSombre: 'Basculer le mode sombre',
+    estimatedTime: 'Durée estimée',
+    thankYou: 'Merci pour votre patience.',
+    statusPage: 'Consultez notre page de statut pour les mises à jour',
+    switchLanguage: 'Basculer la langue vers {lang}',
+    toggleDarkMode: 'Basculer le mode sombre',
     contact: 'Si nécessaire, vous pouvez toujours nous contacter à',
     email: 'support@onetimesecret.com',
-    bouton: 'Retour à l\'accueil',
-    complet: 'Terminé',
+    button: 'Retour à l\'accueil',
+    complete: 'Terminé',
+    languages: 'Langues',
   },
 
   fr_CH:
   {
     logoAlt: 'Logo Secret Onetime',
-    titre: 'Entretien du site web',
+    title: 'Entretien du site web',
     message: 'Nous effectuons actuellement une maintenance planifiée. Veuillez revenir plus tard.',
-    duréeEstimer: 'Durée estimée',
-    merci: 'Merci pour votre compréhension.',
-    pageStatut: 'Consultez notre page de statut pour les informations',
-    basculerLangues: 'Changer la langue vers {lang}',
-    basculerModeSombre: 'Activer le mode sombre',
+    estimatedTime: 'Durée estimée',
+    thankYou: 'Merci pour votre compréhension.',
+    statusPage: 'Consultez notre page de statut pour les informations',
+    switchLanguage: 'Changer la langue vers {lang}',
+    toggleDarkMode: 'Activer le mode sombre',
     contact: 'Vous pouvez nous contacter à l\'adresse',
     email: 'support@onetimesecret.com',
-    bouton: 'Retour à la page d\'accueil',
-    complet: 'Terminé',
+    button: 'Retour à la page d\'accueil',
+    complete: 'Terminé',
+    languages: 'Langues',
   },
   hi:
   {
@@ -136,6 +144,7 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: 'होमपेज पर जाएं',
     complete: 'पूर्ण',
+    languages: 'भाषाएँ',
   },
   zh:
   {
@@ -151,6 +160,8 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: '返回主页',
     complete: '完成',
+    languages: '语言',
+
   },
   ja:
   {
@@ -166,6 +177,7 @@ const messages = {
     email: 'support@onetimesecret.com',
     button: 'ホームページに戻る',
     complete: '完了',
+    languages: '言語',
   },
 };
 
