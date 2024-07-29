@@ -68,6 +68,7 @@ function closeDropdown(event?: MouseEvent) {
 
 function switchLanguage(lang: string) {
   locale.value = lang;
+  // @ts-expect-error "Expects to have a list of available locales"
   i18n.global.locale.value = lang;
   emit('switchLanguage', lang);
   document.documentElement.lang = lang;

@@ -24,6 +24,7 @@ else {
 // Language persistence
 const savedLanguage = storage.get('language');
 if (savedLanguage) {
+  // @ts-expect-error "Expects a list of valid locales"
   i18n.global.locale.value = savedLanguage;
 }
 

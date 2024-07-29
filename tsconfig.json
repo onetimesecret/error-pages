@@ -9,7 +9,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vite/client", "@types/vue"],
+    "types": ["vite/client"],
     "strict": true,
     "importHelpers": true,
     "sourceMap": true,
