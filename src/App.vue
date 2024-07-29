@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue';
 
 const title = ref('Site Maintenance')
-const message = ref('We are currently performing scheduled maintenance. Please check back soon.')
+const message = ref('We are currently performing scheduled maintenance. Your secrets are resting quietly. Please check back soon.')
 const estimatedTime = ref('2 hours')
 const startTime = ref(new Date().getTime())
 const endTime = ref(new Date().getTime() + 2 * 60 * 60 * 1000) // 2 hours from now
@@ -19,6 +19,10 @@ const progress = computed(() => {
   return Math.min(100, Math.max(0, ((now - startTime.value) / (endTime.value - startTime.value)) * 100))
 })
 
+/**
+ * Languages
+ *
+ */
 const switchLanguage = (lang: string) => {
   currentLang.value = lang
   // Here you would typically update your translations
@@ -32,6 +36,17 @@ const switchLanguage = (lang: string) => {
   }
 }
 
+// Watch for changes in the current language
+watch(currentLang, (lang) => {
+  switchLanguage(lang)
+})
+
+
+
+/**
+ * Darkmode
+ *
+ */
 const isDarkMode = ref(false)
 
 const toggleDarkMode = () => {
