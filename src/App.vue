@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-const title = ref('Site Maintenance');
-const message = ref('We are currently performing scheduled maintenance. Please check back soon.');
+const { t, locale } = useI18n();
 
 /**
  * Progress Bar
- *
  */
 const estimatedTime = ref('2 hours');
 const startTime = ref(new Date().getTime());
@@ -17,43 +16,28 @@ const progress = computed(() => {
   return Math.min(100, Math.max(0, ((now - startTime.value) / (endTime.value - startTime.value)) * 100));
 })
 
-
-
 /**
  * Languages
- *
  */
-const currentLang = ref('en')
-
 const languages = [
   { code: 'en', name: 'English' },
   { code: 'es', name: 'Español' },
   { code: 'fr', name: 'Français' },
 ]
 
+// Update document lang attribute when locale changes
 const switchLanguage = (lang: string) => {
-  currentLang.value = lang
-  // Here you would typically update your translations
-  // For this example, we'll just change the title
-  if (lang === 'es') {
-    title.value = 'Mantenimiento del Sitio';
-  } else if (lang === 'fr') {
-    title.value = 'Maintenance du Site';
-  } else {
-    title.value = 'Site Maintenance';
-  }
+  locale.value = lang;
+  document.documentElement.lang = lang
 }
 
-// Watch for changes in the current language
-watch(currentLang, (lang) => {
-  switchLanguage(lang);
+// Watch for changes in locale
+watch(locale, (newLocale) => {
+  switchLanguage(newLocale);
 })
-
-
 
 /**
  * Darkmode
- *
  */
 const isDarkMode = ref(false)
 
@@ -82,7 +66,6 @@ watch(
     updateDarkMode();
   }
 )
-
 </script>
 
 <template>
@@ -91,29 +74,34 @@ watch(
       <div class="text-center">
         <img id="logo"
              src="./assets/img/onetime-logo-v3-xl.svg"
-             class="mx-auto h-12 w-12 text-brand-500 animate-pulse">
+             class="mx-auto h-12 w-12 text-brand-500 animate-pulse"
+             :alt="t('logoAlt')">
 
-        <h2 class="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
-          {{ title }}
-        </h2>
+        <h1 class="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
+          {{ t('title') }}
+        </h1>
       </div>
       <div
            class="mt-8 bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 transition-all duration-500 ease-in-out hover:shadow-xl">
         <div class="space-y-6 text-gray-700 dark:text-gray-300">
-          <p class="text-lg">{{ message }}</p>
-          <p class="text-sm">Estimated time: <span class="font-medium">{{ estimatedTime }}</span></p>
+          <p class="text-lg">{{ t('message') }}</p>
+          <p class="text-sm">{{ t('estimatedTime') }}: <span class="font-medium">{{ estimatedTime }}</span></p>
           <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
             <div class="bg-brand-500 h-2.5 rounded-full transition-all duration-500 ease-out"
-                 :style="{ width: `${progress}%` }"></div>
+                 :style="{ width: `${progress}%` }"
+                 :aria-valuenow="progress"
+                 aria-valuemin="0"
+                 aria-valuemax="100"
+                 role="progressbar"></div>
           </div>
         </div>
         <div class="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
           <p class="text-base font-medium text-brand-500">
-            Thank you for your patience.
+            {{ t('thankYou') }}
           </p>
           <a href="https://status.onetimesecret.com"
              class="text-sm text-brand-500 hover:text-brand-600 transition-colors duration-300 mt-2 inline-block">
-            Check our status page for updates
+            {{ t('statusPage') }}
           </a>
         </div>
       </div>
@@ -122,12 +110,13 @@ watch(
                 :key="lang.code"
                 @click="switchLanguage(lang.code)"
                 class="px-3 py-1 text-sm rounded-full transition-colors duration-300"
-                :class="currentLang === lang.code ? 'bg-brand-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'">
+                :class="locale === lang.code ? 'bg-brand-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'"
+                :aria-label="t('switchLanguage', { lang: lang.name })">
           {{ lang.name }}
         </button>
         <button @click="toggleDarkMode"
                 class="absolute top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors duration-200"
-                aria-label="Toggle dark mode">
+                :aria-label="t('toggleDarkMode')">
           <svg v-if="isDarkMode"
                xmlns="http://www.w3.org/2000/svg"
                class="h-6 w-6"
