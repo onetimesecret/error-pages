@@ -12,7 +12,7 @@ const messages = {
     toggleDarkMode: 'Toggle dark mode',
     contact: 'If you need to, you can always contact us at',
     email: 'support@onetimesecret.com',
-    button: 'Back to home'
+    button: 'Back to home',
   },
 
   es: {
@@ -26,7 +26,7 @@ const messages = {
     toggleDarkMode: 'Alternar modo oscuro',
     contact: 'Si lo necesita, siempre puede contactarnos en',
     email: 'support@onetimesecret.com',
-    button: 'Volver al inicio'
+    button: 'Volver al inicio',
   },
 
   fr: {
@@ -41,13 +41,13 @@ const messages = {
     toggleDarkMode: 'Activer le mode sombre',
     contact: 'Si vous en avez besoin, vous pouvez toujours nous contacter à',
     email: 'support@onetimesecret.com',
-    button: "Retour à l'accueil"
-  }
+    button: 'Retour à l\'accueil',
+  },
 }
 
 export const i18n = createI18n({
   legacy: false,
   locale: 'en',
   fallbackLocale: 'en',
-  messages
+  messages,
 })

@@ -26,7 +26,7 @@
  *        eslint-disable-next-line ts/consistent-type-definitions
  *
  */
-import antfu from '@antfu/eslint-config';
+import antfu from '@antfu/eslint-config'
 
 export default antfu({
   // Type of the project. 'lib' for libraries, the default is 'app'
@@ -48,4 +48,4 @@ export default antfu({
   ignores: [
     // Add your ignore patterns here
   ],
-});
+})
