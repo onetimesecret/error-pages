@@ -5,13 +5,54 @@ import { storage } from '@/stores/prefs';
 import { i18n } from '@/i18n';
 
 const props = defineProps<{
-  languages: { code: string; name: string; flag: string; region: string }[];
   currentLocale: string;
 }>();
 
 const emit = defineEmits<{
   (e: 'switchLanguage', lang: string): void;
 }>();
+
+/**
+ * Languages
+ */
+
+interface Language {
+  code: string;
+  name: string;
+  region: string;
+}
+
+type LanguageList = Language[];
+
+const languages: LanguageList = [
+  { code: 'en', name: 'English', region: 'North America' },
+  { code: 'es', name: 'Español', region: 'Europe' },
+  { code: 'fr', name: 'Français', region: 'Europe' },
+  { code: 'fr_CA', name: 'Français canadien', region: 'North America' },
+  { code: 'fr_CH', name: 'Français suisse', region: 'Europe' },
+  { code: 'hi', name: 'Hindi', region: 'Asia' },
+  { code: 'zh', name: 'Mandarin', region: 'Asia' },
+  { code: 'ja', name: 'Japanese', region: 'Asia' },
+  { code: 'bg', name: 'Bulgarian', region: 'Europe' },
+  { code: 'de', name: 'Deutsch', region: 'Europe' },
+  { code: 'nl', name: 'Nederlands', region: 'Europe' },
+  { code: 'ru', name: 'Russian', region: 'Europe' },
+  { code: 'ar', name: 'Arabic', region: 'Middle East' },
+  { code: 'ko', name: 'Korean', region: 'Asia' },
+  { code: 'it', name: 'Italian', region: 'Europe' },
+  { code: 'tr', name: 'Turkish', region: 'Europe' },
+  { code: 'pl', name: 'Polish', region: 'Europe' },
+  { code: 'sv', name: 'Swedish', region: 'Europe' },
+  { code: 'el', name: 'Greek', region: 'Europe' },
+  { code: 'vi', name: 'Vietnamese', region: 'Asia' },
+  { code: 'th', name: 'Thai', region: 'Asia' },
+  { code: 'id', name: 'Indonesian', region: 'Asia' },
+  { code: 'uk', name: 'Ukrainian', region: 'Europe' },
+  { code: 'ro', name: 'Romanian', region: 'Europe' },
+  { code: 'ms', name: 'Malay', region: 'Asia' },
+  { code: 'pt', name: 'Portuguese', region: 'Europe' },
+  { code: 'pt_BR', name: 'Portuguese (Brazil)', region: 'South America' },
+];
 
 const { t, locale } = useI18n();
 
@@ -21,12 +62,12 @@ const dropdownList = ref<HTMLUListElement | null>(null);
 const focusedIndex = ref(-1);
 
 const currentLanguage = computed(() =>
-  props.languages.find(lang => lang.code === props.currentLocale) || props.languages[0],
+  languages.find(lang => lang.code === props.currentLocale) || languages[0],
 );
 
 const groupedLanguages = computed(() => {
-  const groups: { [key: string]: typeof props.languages } = {};
-  props.languages.forEach((lang) => {
+  const groups: { [key: string]: typeof languages } = {};
+  languages.forEach((lang) => {
     if (!groups[lang.region]) {
       groups[lang.region] = [];
     }
@@ -98,7 +139,7 @@ function selectFocusedOption() {
 }
 
 // Lazy loading implementation
-const loadedLanguages = ref<typeof props.languages>([]);
+const loadedLanguages = ref<typeof languages>([]);
 const itemsPerBatch = 20;
 const loadingTimeout: number | null = null;
 
@@ -109,10 +150,10 @@ function loadMoreLanguages() {
 
   setTimeout(() => {
     const start = loadedLanguages.value.length;
-    const end = Math.min(start + itemsPerBatch, props.languages.length);
-    loadedLanguages.value = loadedLanguages.value.concat(props.languages.slice(start, end));
+    const end = Math.min(start + itemsPerBatch, languages.length);
+    loadedLanguages.value = loadedLanguages.value.concat(languages.slice(start, end));
 
-    if (end < props.languages.length) {
+    if (end < languages.length) {
       loadMoreLanguages();
     }
   }, 100);
@@ -150,7 +191,6 @@ watch(isOpen, (newValue) => {
         @keydown.up.prevent="focusPrev"
       >
         <span class="flex items-center">
-          <span class="mr-2">{{ currentLanguage.flag }}</span>
           {{ currentLanguage.name }}
         </span>
         <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -195,7 +235,6 @@ watch(isOpen, (newValue) => {
                 @click="switchLanguage(lang.code)"
                 @mouseenter="focusedIndex = flattenedLanguages.indexOf(lang)"
               >
-                <span class="mr-2">{{ lang.flag }}</span>
                 {{ lang.name }}
               </li>
             </template>

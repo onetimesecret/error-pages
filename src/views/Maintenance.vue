@@ -9,23 +9,6 @@ const { t, locale } = useI18n();
 
 const estimatedTime = ref('3 hours');
 
-/**
- * Languages
- */
-const languages = [
-  { code: 'en', name: 'English', flag: '🇺🇸', region: 'North America' },
-  { code: 'es', name: 'Español', flag: '🇪🇸', region: 'Europe' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷', region: 'Europe' },
-  { code: 'fr_CA', name: 'Français canadien', flag: '🇨🇦', region: 'North America' },
-  { code: 'fr_CH', name: 'Français suisse', flag: '🇨🇭', region: 'Europe' },
-  { code: 'hi', name: 'Hindi', flag: '🇮🇳', region: 'Asia' },
-  { code: 'zh', name: 'Mandarin', flag: '🇨🇳', region: 'Asia' },
-  { code: 'ja', name: 'Japanese', flag: '🇯🇵', region: 'Asia' },
-  { code: 'bg', name: 'Bulgarian', flag: '🇧🇬', region: 'Europe' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪', region: 'Europe' },
-  { code: 'nl', name: 'Nederlands', flag: '🇳🇱', region: 'Europe' },
-];
-
 // Update document lang attribute when locale changes
 function switchLanguage(lang: string) {
   locale.value = lang;
@@ -74,7 +57,6 @@ watch(locale, (newLocale) => {
         </div>
         <div class="flex items-center justify-center">
           <LanguageSwitcher
-            :languages="languages"
             :current-locale="locale"
             @switch-language="switchLanguage"
           />
