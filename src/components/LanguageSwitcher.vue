@@ -134,13 +134,13 @@ watch(isOpen, (newValue) => {
 
 <template>
   <div class="max-w-md mx-auto w-full">
-    <h2 class="font-bold text-lg text-brand-500 mb-4">
+    <h2 class="font-bold text-brand-500 text-lg mb-4">
       {{ t('languages') }}
     </h2>
     <div class="relative">
       <button
         ref="dropdownButton"
-        class="w-full flex px-4 text-gray-700 bg-white dark:text-gray-200 items-center justify-between py-2 text-sm font-medium border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 dark:bg-gray-800 dark:border-gray-600"
+        class="w-full flex px-4 text-gray-700 bg-white dark:text-gray-200 items-center justify-between text-sm dark:bg-gray-800 py-2 font-medium border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 dark:border-gray-600"
         aria-haspopup="listbox"
         :aria-expanded="isOpen"
         @click="toggleDropdown"
@@ -179,7 +179,7 @@ watch(isOpen, (newValue) => {
             @keydown.up.prevent="focusPrev"
           >
             <template v-for="(group, groupName) in groupedLanguages" :key="groupName">
-              <li class="py-2 px-3 text-xs font-semibold text-gray-500 dark:text-gray-400">
+              <li class="py-2 dark:text-gray-400 px-3 text-xs font-semibold text-gray-500">
                 {{ groupName }}
               </li>
               <li
