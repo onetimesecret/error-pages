@@ -12,46 +12,39 @@ const emit = defineEmits<{
   (e: 'switchLanguage', lang: string): void;
 }>();
 
-/**
- * Languages
- */
-
 interface Language {
   code: string;
   name: string;
-  region: string;
 }
 
-type LanguageList = Language[];
-
-const languages: LanguageList = [
-  { code: 'en', name: 'English', region: 'North America' },
-  { code: 'es', name: 'Español', region: 'Europe' },
-  { code: 'fr', name: 'Français', region: 'Europe' },
-  { code: 'fr_CA', name: 'Français canadien', region: 'North America' },
-  { code: 'fr_CH', name: 'Français suisse', region: 'Europe' },
-  { code: 'hi', name: 'Hindi', region: 'Asia' },
-  { code: 'zh', name: 'Mandarin', region: 'Asia' },
-  { code: 'ja', name: 'Japanese', region: 'Asia' },
-  { code: 'bg', name: 'Bulgarian', region: 'Europe' },
-  { code: 'de', name: 'Deutsch', region: 'Europe' },
-  { code: 'nl', name: 'Nederlands', region: 'Europe' },
-  { code: 'ru', name: 'Russian', region: 'Europe' },
-  { code: 'ar', name: 'Arabic', region: 'Middle East' },
-  { code: 'ko', name: 'Korean', region: 'Asia' },
-  { code: 'it', name: 'Italian', region: 'Europe' },
-  { code: 'tr', name: 'Turkish', region: 'Europe' },
-  { code: 'pl', name: 'Polish', region: 'Europe' },
-  { code: 'sv', name: 'Swedish', region: 'Europe' },
-  { code: 'el', name: 'Greek', region: 'Europe' },
-  { code: 'vi', name: 'Vietnamese', region: 'Asia' },
-  { code: 'th', name: 'Thai', region: 'Asia' },
-  { code: 'id', name: 'Indonesian', region: 'Asia' },
-  { code: 'uk', name: 'Ukrainian', region: 'Europe' },
-  { code: 'ro', name: 'Romanian', region: 'Europe' },
-  { code: 'ms', name: 'Malay', region: 'Asia' },
-  { code: 'pt', name: 'Portuguese', region: 'Europe' },
-  { code: 'pt_BR', name: 'Portuguese (Brazil)', region: 'South America' },
+const languages: Language[] = [
+  { code: 'ar', name: 'Arabic' },
+  { code: 'bg', name: 'Bulgarian' },
+  { code: 'de', name: 'Deutsch' },
+  { code: 'el', name: 'Greek' },
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Español' },
+  { code: 'fr', name: 'Français' },
+  { code: 'fr_CA', name: 'Français canadien' },
+  { code: 'fr_CH', name: 'Français suisse' },
+  { code: 'hi', name: 'Hindi' },
+  { code: 'id', name: 'Indonesian' },
+  { code: 'it', name: 'Italian' },
+  { code: 'ja', name: 'Japanese' },
+  { code: 'ko', name: 'Korean' },
+  { code: 'ms', name: 'Malay' },
+  { code: 'nl', name: 'Nederlands' },
+  { code: 'pl', name: 'Polish' },
+  { code: 'pt', name: 'Portuguese' },
+  { code: 'pt_BR', name: 'Portuguese (Brazil)' },
+  { code: 'ro', name: 'Romanian' },
+  { code: 'ru', name: 'Russian' },
+  { code: 'sv', name: 'Swedish' },
+  { code: 'th', name: 'Thai' },
+  { code: 'tr', name: 'Turkish' },
+  { code: 'uk', name: 'Ukrainian' },
+  { code: 'vi', name: 'Vietnamese' },
+  { code: 'zh', name: 'Mandarin' },
 ];
 
 const { t, locale } = useI18n();
@@ -65,16 +58,9 @@ const currentLanguage = computed(() =>
   languages.find(lang => lang.code === props.currentLocale) || languages[0],
 );
 
-const groupedLanguages = computed(() => {
-  const groups: { [key: string]: typeof languages } = {};
-  languages.forEach((lang) => {
-    if (!groups[lang.region]) {
-      groups[lang.region] = [];
-    }
-    groups[lang.region].push(lang);
-  });
-  return groups;
-});
+const sortedLanguages = computed(() =>
+  [...languages].sort((a, b) => a.name.localeCompare(b.name)),
+);
 
 function toggleDropdown() {
   isOpen.value = !isOpen.value;
@@ -86,14 +72,11 @@ function toggleDropdown() {
   }
 }
 
-// Update the openDropdown function to set initial focus
-// Add this new computed property
-const flattenedLanguages = computed(() => Object.values(groupedLanguages.value).flat());
 function openDropdown() {
   isOpen.value = true;
   nextTick(() => {
     dropdownList.value?.focus();
-    focusedIndex.value = flattenedLanguages.value.findIndex(lang => lang.code === props.currentLocale);
+    focusedIndex.value = sortedLanguages.value.findIndex(lang => lang.code === props.currentLocale);
     if (focusedIndex.value === -1)
       focusedIndex.value = 0;
   });
@@ -117,51 +100,19 @@ function switchLanguage(lang: string) {
   closeDropdown();
 }
 
-// Update these functions
 function focusNext() {
-  const totalOptions = flattenedLanguages.value.length;
-  do {
-    focusedIndex.value = (focusedIndex.value + 1) % totalOptions;
-  } while (flattenedLanguages.value[focusedIndex.value].region === 'header');
+  focusedIndex.value = (focusedIndex.value + 1) % sortedLanguages.value.length;
 }
 
 function focusPrev() {
-  const totalOptions = flattenedLanguages.value.length;
-  do {
-    focusedIndex.value = (focusedIndex.value - 1 + totalOptions) % totalOptions;
-  } while (flattenedLanguages.value[focusedIndex.value].region === 'header');
+  focusedIndex.value = (focusedIndex.value - 1 + sortedLanguages.value.length) % sortedLanguages.value.length;
 }
 
 function selectFocusedOption() {
-  if (focusedIndex.value >= 0 && focusedIndex.value < flattenedLanguages.value.length) {
-    switchLanguage(flattenedLanguages.value[focusedIndex.value].code);
+  if (focusedIndex.value >= 0 && focusedIndex.value < sortedLanguages.value.length) {
+    switchLanguage(sortedLanguages.value[focusedIndex.value].code);
   }
 }
-
-// Lazy loading implementation
-const loadedLanguages = ref<typeof languages>([]);
-const itemsPerBatch = 20;
-const loadingTimeout: number | null = null;
-
-function loadMoreLanguages() {
-  if (loadingTimeout) {
-    clearTimeout(loadingTimeout);
-  }
-
-  setTimeout(() => {
-    const start = loadedLanguages.value.length;
-    const end = Math.min(start + itemsPerBatch, languages.length);
-    loadedLanguages.value = loadedLanguages.value.concat(languages.slice(start, end));
-
-    if (end < languages.length) {
-      loadMoreLanguages();
-    }
-  }, 100);
-}
-
-onMounted(() => {
-  loadMoreLanguages();
-});
 
 watch(isOpen, (newValue) => {
   if (newValue) {
@@ -218,26 +169,21 @@ watch(isOpen, (newValue) => {
             @keydown.down.prevent="focusNext"
             @keydown.up.prevent="focusPrev"
           >
-            <template v-for="(group, groupName) in groupedLanguages" :key="groupName">
-              <li class="py-2 dark:text-gray-400 px-3 text-xs font-semibold text-gray-500">
-                {{ groupName }}
-              </li>
-              <li
-                v-for="lang in group"
-                :key="lang.code"
-                class="flex items-center px-4 py-2 text-gray-900 dark:text-gray-200 cursor-pointer select-none hover:bg-brand-500 hover:text-white dark:hover:bg-brand-600"
-                :class="{
-                  'bg-brand-500 text-white': props.currentLocale === lang.code,
-                  'bg-brand-100 dark:bg-brand-700': focusedIndex === flattenedLanguages.indexOf(lang),
-                }"
-                role="option"
-                :aria-selected="props.currentLocale === lang.code"
-                @click="switchLanguage(lang.code)"
-                @mouseenter="focusedIndex = flattenedLanguages.indexOf(lang)"
-              >
-                {{ lang.name }}
-              </li>
-            </template>
+            <li
+              v-for="(lang, index) in sortedLanguages"
+              :key="lang.code"
+              class="flex items-center px-4 py-2 text-gray-900 dark:text-gray-200 cursor-pointer select-none hover:bg-brand-500 hover:text-white dark:hover:bg-brand-600"
+              :class="{
+                'bg-brand-500 text-white': props.currentLocale === lang.code,
+                'bg-brand-100 dark:bg-brand-700': focusedIndex === index,
+              }"
+              role="option"
+              :aria-selected="props.currentLocale === lang.code"
+              @click="switchLanguage(lang.code)"
+              @mouseenter="focusedIndex = index"
+            >
+              {{ lang.name }}
+            </li>
           </ul>
         </div>
       </transition>
