@@ -7,7 +7,8 @@ import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 
 const { t, locale } = useI18n();
 
-const estimatedTime = ref('3 hours');
+const startTime = ref('2024-07-30T01:35:00Z');
+const estimatedTime = ref('60 minutes');
 
 // Update document lang attribute when locale changes
 function switchLanguage(lang: string) {
@@ -36,6 +37,7 @@ watch(locale, (newLocale) => {
             {{ t('title') }}
           </h1>
         </div>
+
         <!-- TailwindUI-inspired Card component -->
         <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
           <div class="px-4 py-5 sm:p-6">
@@ -44,7 +46,7 @@ watch(locale, (newLocale) => {
                 {{ t('message') }}
               </p>
               <ProgressBar
-                start-time="2024-07-29T19:00:00Z"
+                :start-time="startTime"
                 :duration="estimatedTime"
               />
             </div>
@@ -55,6 +57,7 @@ watch(locale, (newLocale) => {
             </div>
           </div>
         </div>
+
         <div class="flex items-center justify-center">
           <LanguageSwitcher
             :current-locale="locale"
