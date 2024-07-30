@@ -7,7 +7,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 
 const { t, locale } = useI18n();
 
-const startTime = ref('2024-07-30T01:35:00Z');
+const startTime = ref('2024-07-30T02:45:00Z');
 const estimatedTime = ref('60 minutes');
 
 // Update document lang attribute when locale changes
