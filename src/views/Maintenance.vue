@@ -28,10 +28,12 @@ watch(locale, (newLocale) => {
     <div class="flex min-h-screen px-4 justify-center items-start sm:px-6 lg:px-8 pt-40">
       <div class="w-full max-w-md space-y-8">
         <div class="text-center">
-          <ActiveLogo
-            class="mx-auto h-12 w-12"
-            :pulse-rate="3"
-          />
+          <router-link to="/">
+            <ActiveLogo
+              class="mx-auto h-12 w-12"
+              :pulse-rate="3"
+            />
+          </router-link>
 
           <h1 class="text-3xl font-extrabold text-gray-900 mt-6 dark:text-white">
             {{ t('title') }}

@@ -15,11 +15,11 @@ const { t } = useI18n();
           <router-link to="/">
             <ActiveLogo
               class="mx-auto h-12 w-12"
-              :pulse-rate="2"
+              :pulse-rate="1"
             />
           </router-link>
           <h1 class="text-3xl font-extrabold text-gray-900 mt-6 dark:text-white">
-            {{ t('404') }}
+            {{ t('500') }}
           </h1>
         </div>
 
@@ -29,10 +29,10 @@ const { t } = useI18n();
             <div class="text-gray-700 dark:text-gray-300 space-y-6">
               <div>
                 <h1 class="text-2xl dark:text-gray-300 font-bold mb-2">
-                  404 - Page Not Found
+                  500 - Server Error
                 </h1>
                 <p class="text-gray-600 dark:text-gray-400">
-                  The page you are looking for doesn't exist.
+                  Oops! Something went wrong on the server.
                 </p>
               </div>
             </div>
