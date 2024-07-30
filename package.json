@@ -13,7 +13,7 @@
     "test:unit": "vitest",
     "test:e2e": "playwright test",
     "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit",
+    "type-check": "vue-tsc --build --force",
     "lint:inspector": "pnpx @eslint/config-inspector",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
