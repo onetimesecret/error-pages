@@ -2,8 +2,13 @@ import { fileURLToPath } from 'node:url';
 import { configDefaults, defineConfig, mergeConfig } from 'vitest/config';
 import viteConfig from './vite.config';
 
+// Since viteConfig is now a function that takes a ConfigEnv parameter, we need to call it
+const resolvedViteConfig = typeof viteConfig === 'function'
+  ? viteConfig({ mode: 'test', command: 'build' })
+  : viteConfig;
+
 export default mergeConfig(
-  viteConfig,
+  resolvedViteConfig,
   defineConfig({
     test: {
       environment: 'jsdom',
