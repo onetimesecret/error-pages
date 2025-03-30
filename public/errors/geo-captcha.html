@@ -329,12 +329,16 @@
       <!-- Choose ONE of these blocks based on error type -->
 
       <!-- IP/Country Block -->
-      <!-- <div>
+      <div>
         <div class="error-code">403</div>
         <h2 class="error-title">Access Denied</h2>
-        <p class="error-description">Sorry, your access to this resource has been restricted.</p>
-        ::GEO::
-      </div> -->
+        <br>
+        <!--<p class="error-description">Sorry, your access to this resource has been restricted.</p>-->
+        <p>::CAPTCHA_BOX::</p>
+        <br>
+        <p>::GEO::</p>
+        <br><br>
+      </div>
 
       <!-- Interactive Challenge -->
       <!-- <div>
@@ -355,15 +359,12 @@
       </div> -->
 
       <!-- 5XX Errors -->
-      <div>
+      <!--<div>
         <div class="error-code">500</div>
         <h2 class="error-title">Server Error</h2>
-        <!--<p class="error-description">Sorry, something went wrong on our server. We're working to fix the issue.</p>-->
-        <!--<br>-->
-        <!--<div>::CLOUDFLARE_ERROR_500S_BOX::</div>-->
-        <br>
-        <br>
-      </div>
+        <p class="error-description">Sorry, something went wrong on our server. We're working to fix the issue.</p>
+        ::CLOUDFLARE_ERROR_500S_BOX::
+      </div>-->
 
       <!-- 1XXX Errors -->
       <!-- <div>
@@ -374,9 +375,8 @@
       </div> -->
 
       <div class="diagnostic-info">
-        <!--<p><strong>Client IP:</strong> ::CLIENT_IP::</p>
-        <p><strong>Ray ID:</strong> ::RAY_ID::</p>-->
-        <div>::CLOUDFLARE_ERROR_500S_BOX::</div>
+        <p><strong>Client IP:</strong> ::CLIENT_IP::</p>
+        <p><strong>Ray ID:</strong> ::RAY_ID::</p>
       </div>
 
       <a href="https://onetimesecret.com/" class="action-button">Return to Homepage</a>
