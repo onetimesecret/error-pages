@@ -1,5 +1,22 @@
 {
-  "files": [],
+  "compilerOptions": {
+    "disableReferencedProjectLoad": true,
+    "target": "esnext",
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["vite/client"],
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "importHelpers": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"
@@ -10,5 +27,8 @@
     {
       "path": "./tsconfig.vitest.json"
     }
-  ]
+  ],
+  "files": [],
+  "include": [],
+  "exclude": ["node_modules"]
 }
