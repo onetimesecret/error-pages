@@ -43,19 +43,19 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      # Upload build artifact
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: ./dist
-          retention-days: 7
-
-      # Upload Pages artifact
+      # Upload Pages artifact for GitHub Pages deployment
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+
+      # Upload build artifact for workflow records (optional)
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: ./dist
+          retention-days: 7
 
   # Deploy job
   deploy:
