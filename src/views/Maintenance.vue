@@ -45,15 +45,22 @@ watch(locale, (newLocale) => {
           <div class="px-4 py-5 sm:p-6">
             <div class="text-gray-700 dark:text-gray-300 space-y-6">
               <p class="text-lg">
-                <a href="https://docs.onetimesecret.com/blog/2024-09-09-denial-of-service" title="More information about the DDoS attack in this blog post from Sept 9th, 2024" target="_blank">{{ t('message') }}</a>
+                {{ t('message') }}
               </p>
               <!-- <ProgressBar
                 :start-time="startTime"
                 :duration="estimatedTime"
               /> -->
-              <p>
+              <!-- <p>
                 See our <a href="https://docs.onetimesecret.com/blog/2024-09-09-denial-of-service" title="More information about the DDoS attack in this blog post from Sept 9th, 2024" target="_blank" class="text-brandcomp-600 hover:text-brandcomp-800 dark:text-brandcomp-400 dark:hover:text-brandcomp-200 underline focus:outline-none focus:ring-2 focus:ring-brandcomp-500 dark:focus:ring-brandcomp-400 rounded">blog post</a> for more details.
-              </p>
+              </p> -->
+              <div class="card">
+                <h2>500 - Server Error</h2>
+                <p>We're sorry, but something went wrong on our end.</p>
+                <p>::CLOUDFLARE_ERROR_500S_BOX::</p>
+                <p>Ray ID: <strong>::RAY_ID::</strong></p>
+                <p>We've been notified of this issue and are working to resolve it.</p>
+              </div>
             </div>
             <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
               <p class="text-gray-600 font-medium text-base">
