@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   return {
-    // Use base from environment variable or default to '/' for local development
+    // Always use root base path '/' by default instead of a subdirectory
     base: env.VITE_BASE_URL || '/',
     plugins: [
       vue(),
@@ -53,6 +53,14 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: {
           main: fileURLToPath(new URL('./index.html', import.meta.url)),
+          maintenance: fileURLToPath(new URL('./index.html', import.meta.url)),
+          // Add error pages to rollupOptions input
+          ...Object.fromEntries(
+            errorPages.map(errorCode => [
+              errorCode,
+              fileURLToPath(new URL('./index.html', import.meta.url)),
+            ]),
+          ),
         },
       },
     },
