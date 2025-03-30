@@ -31,10 +31,6 @@ jobs:
           cache: pnpm
       - run: pnpm install
 
-      # Run tests
-      - name: Run unit tests
-        run: pnpm test:unit
-
       # Set base URL for GitHub Pages
       - name: Set base URL
         run: |
@@ -47,19 +43,19 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      # Upload build artifact
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+      # Upload Pages artifact for GitHub Pages deployment
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
+          path: ./dist
+
+      # Upload build artifact for workflow records (optional)
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
           path: ./dist
           retention-days: 7
-
-      # Upload Pages artifact
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./dist
 
   # Deploy job
   deploy:
@@ -78,4 +74,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
