@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Time Secret - Error</title>
+  <style>
+    /* Define theme variables based on Tailwind config */
+    :root {
+      /* Brand colors from your Tailwind config */
+      --brand-50: #fcf8f2;
+      --brand-100: #fcf4e8;
+      --brand-200: #f7dec3;
+      --brand-300: #f0c39e;
+      --brand-400: #e68b5e;
+      --brand-500: #dc4a22;
+      --brand-600: #c43d1b;
+      --brand-700: #a32d12;
+      --brand-800: #85200c;
+      --brand-900: #631507;
+      --brand-950: #400b03;
+
+      /* Brand complement colors */
+      --brandcomp-50: #f2fbfc;
+      --brandcomp-100: #e8fafc;
+      --brandcomp-200: #c3f0f7;
+      --brandcomp-300: #a0e6f2;
+      --brandcomp-400: #5fcfe8;
+      --brandcomp-500: #23b5dd;
+      --brandcomp-600: #1c9cc7;
+      --brandcomp-700: #1478a6;
+      --brandcomp-800: #0d5985;
+      --brandcomp-900: #073b63;
+      --brandcomp-950: #032140;
+
+      /* Gray scale */
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Font setup */
+    @font-face {
+      font-family: 'Zilla Slab';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('data:font/woff2;base64,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') format('woff2');
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: var(--gray-50);
+      color: var(--gray-900);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .error-card {
+      position: relative;
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 500px;
+      padding: 2rem;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .error-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Interactive background gradient - using your animation from Tailwind config */
+    .error-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg,
+                 rgba(220, 74, 34, 0.05) 0%,
+                 rgba(35, 181, 221, 0.1) 50%,
+                 rgba(220, 74, 34, 0.05) 100%);
+      background-size: 200% 100%;
+      animation: gradient-x 5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes gradient-x {
+      0%, 100% {
+        background-position: left center;
+      }
+      50% {
+        background-position: right center;
+      }
+    }
+
+    .header {
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .brand-text {
+      font-family: 'Zilla Slab', serif;
+      color: var(--brand-600);
+    }
+
+    .error-code {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--brand-500);
+      margin-bottom: 0.5rem;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+      font-family: 'Zilla Slab', serif;
+    }
+
+    .error-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+      font-family: 'Zilla Slab', serif;
+    }
+
+    .error-description {
+      color: var(--gray-600);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .diagnostic-info {
+      background-color: var(--gray-100);
+      border-radius: 0.375rem;
+      padding: 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      margin-bottom: 1.5rem;
+      word-break: break-all;
+      text-align: left;
+      position: relative;
+      z-index: 1;
+      border-left: 3px solid var(--brandcomp-500);
+    }
+
+    .diagnostic-info p {
+      margin-bottom: 0.5rem;
+    }
+
+    .diagnostic-info p:last-child {
+      margin-bottom: 0;
+    }
+
+    .action-button {
+      display: inline-block;
+      background-color: var(--brand-500);
+      color: white;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+      box-shadow: var(--shadow-md);
+    }
+
+    .action-button:hover {
+      background-color: var(--brand-600);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      text-align: center;
+    }
+
+    /* Interactive element styles */
+    .animated-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right,
+                 var(--brand-500),
+                 var(--brandcomp-500),
+                 var(--brand-500));
+      background-size: 200% 100%;
+      animation: gradient-x 5s ease-in-out infinite;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: var(--gray-900);
+        color: var(--gray-100);
+      }
+
+      .error-card {
+        background-color: var(--gray-800);
+        border: 1px solid var(--gray-700);
+      }
+
+      .error-card::before {
+        background: linear-gradient(90deg,
+                   rgba(220, 74, 34, 0.1) 0%,
+                   rgba(35, 181, 221, 0.15) 50%,
+                   rgba(220, 74, 34, 0.1) 100%);
+      }
+
+      .error-title {
+        color: var(--gray-100);
+      }
+
+      .error-description {
+        color: var(--gray-300);
+      }
+
+      .diagnostic-info {
+        background-color: var(--gray-900);
+        color: var(--gray-300);
+        border-color: var(--brandcomp-400);
+      }
+    }
+
+    /* Responsive design */
+    @media (max-width: 640px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .error-card {
+        padding: 1.5rem;
+      }
+
+      .error-code {
+        font-size: 3rem;
+      }
+
+      .error-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Token-specific styles */
+    .captcha-container {
+      background-color: var(--gray-100);
+      border-radius: 0.375rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dark .captcha-container {
+      background-color: var(--gray-800);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="error-card" role="alert">
+      <div class="animated-border"></div>
+
+      <div class="header">
+        <h1 class="brand-text" style="font-size: 2rem; margin-bottom: 1rem;">One Time Secret</h1>
+      </div>
+
+      <!-- Choose ONE of these blocks based on error type -->
+
+      <!-- IP/Country Block -->
+      <!-- <div>
+        <div class="error-code">403</div>
+        <h2 class="error-title">Access Denied</h2>
+        <p class="error-description">Sorry, your access to this resource has been restricted.</p>
+        ::GEO::
+      </div> -->
+
+      <!-- Interactive Challenge -->
+      <!-- <div>
+        <div class="error-code">429</div>
+        <h2 class="error-title">Verification Required</h2>
+        <p class="error-description">Please complete the security check to continue.</p>
+        <div class="captcha-container">
+          ::CAPTCHA_BOX::
+        </div>
+      </div> -->
+
+      <!-- JS Challenge -->
+      <!-- <div>
+        <div class="error-code">1020</div>
+        <h2 class="error-title">Security Check</h2>
+        <p class="error-description">Please wait while we verify your browser.</p>
+        ::IM_UNDER_ATTACK_BOX::
+      </div> -->
+
+      <!-- 5XX Errors -->
+      <!-- <div>
+        <div class="error-code">500</div>
+        <h2 class="error-title">Server Error</h2>
+        <p class="error-description">Sorry, something went wrong on our server. We're working to fix the issue.</p>
+        ::CLOUDFLARE_ERROR_500S_BOX::
+      </div> -->
+
+      <!-- 1XXX Errors -->
+      <!-- <div>
+        <div class="error-code">1001</div>
+        <h2 class="error-title">Connection Error</h2>
+        <p class="error-description">There was a problem connecting to the website.</p>
+        ::CLOUDFLARE_ERROR_1000S_BOX::
+      </div> -->
+
+      <div class="diagnostic-info">
+        <p><strong>Client IP:</strong> ::CLIENT_IP::</p>
+        <p><strong>Ray ID:</strong> ::RAY_ID::</p>
+      </div>
+
+      <a href="/" class="action-button">Return to Homepage</a>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2025 One Time Secret. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    // Detect dark mode
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark');
+    }
+
+    // Listen for changes in color scheme preference
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      if (event.matches) {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
+    });
+  </script>
+</body>
+</html>
