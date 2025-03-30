@@ -34,7 +34,7 @@ jobs:
       # Set base URL for GitHub Pages
       - name: Set base URL
         run: |
-          echo "VITE_BASE_URL=/${GITHUB_REPOSITORY#*/}/" >> .env.production
+          echo "VITE_BASE_URL=/" >> .env.production
 
       - name: Build
         run: pnpm run build
