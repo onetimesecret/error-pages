@@ -25,6 +25,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
-      - run: npm install
-      - run: npm run build --if-present
+          cache: pnpm # Changed from npm to pnpm
+      - uses: pnpm/action-setup@v2 # Added pnpm setup action
+        with:
+          version: 8 # Or any other supported version
+      - run: pnpm install
+      - run: pnpm run build --if-present
