@@ -315,6 +315,10 @@
     .dark .captcha-container {
       background-color: var(--gray-800);
     }
+
+    .cloudflare-error-content {
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -336,7 +340,7 @@
         <!--<p class="error-description">Sorry, your access to this resource has been restricted.</p>-->
         <p>::CAPTCHA_BOX::</p>
         <br>
-        <p>::GEO::</p>
+        <div class="cloudflare-error-content">::GEO::</div>
         <br><br>
       </div>
 

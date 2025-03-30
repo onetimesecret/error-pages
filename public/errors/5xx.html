@@ -315,6 +315,10 @@
     .dark .captcha-container {
       background-color: var(--gray-800);
     }
+
+    .cloudflare-error-content {
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -359,10 +363,9 @@
         <div class="error-code">500</div>
         <h2 class="error-title">Server Error</h2>
         <!--<p class="error-description">Sorry, something went wrong on our server. We're working to fix the issue.</p>-->
-        <!--<br>-->
-        <!--<div>::CLOUDFLARE_ERROR_500S_BOX::</div>-->
-        <br>
-        <br>
+        <br><br>
+        <div class="cloudflare-error-content">::CLOUDFLARE_ERROR_500S_BOX::</div>
+        <br><br>
       </div>
 
       <!-- 1XXX Errors -->
@@ -374,9 +377,8 @@
       </div> -->
 
       <div class="diagnostic-info">
-        <!--<p><strong>Client IP:</strong> ::CLIENT_IP::</p>
-        <p><strong>Ray ID:</strong> ::RAY_ID::</p>-->
-        <div>::CLOUDFLARE_ERROR_500S_BOX::</div>
+        <p><strong>Client IP:</strong> ::CLIENT_IP::</p>
+        <p><strong>Ray ID:</strong> ::RAY_ID::</p>
       </div>
 
       <a href="https://onetimesecret.com/" class="action-button">Return to Homepage</a>
