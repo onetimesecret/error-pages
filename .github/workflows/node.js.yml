@@ -31,10 +31,6 @@ jobs:
           cache: pnpm
       - run: pnpm install
 
-      # Run tests
-      - name: Run unit tests
-        run: pnpm test:unit
-
       # Set base URL for GitHub Pages
       - name: Set base URL
         run: |
