@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>One Time Secret - Error</title>
+  <title>Onetime Secret - Error</title>
   <style>
     /* Define theme variables based on Tailwind config */
     :root {
@@ -19,7 +19,7 @@
       --brand-800: #85200c;
       --brand-900: #631507;
       --brand-950: #400b03;
-      
+
       /* Brand complement colors */
       --brandcomp-50: #f2fbfc;
       --brandcomp-100: #e8fafc;
@@ -32,7 +32,7 @@
       --brandcomp-800: #0d5985;
       --brandcomp-900: #073b63;
       --brandcomp-950: #032140;
-      
+
       /* Gray scale */
       --gray-50: #f9fafb;
       --gray-100: #f3f4f6;
@@ -45,7 +45,7 @@
       --gray-800: #1f2937;
       --gray-900: #111827;
       --gray-950: #030712;
-      
+
       /* Shadows */
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -116,9 +116,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(90deg, 
-                 rgba(220, 74, 34, 0.05) 0%, 
-                 rgba(35, 181, 221, 0.1) 50%, 
+      background: linear-gradient(90deg,
+                 rgba(220, 74, 34, 0.05) 0%,
+                 rgba(35, 181, 221, 0.1) 50%,
                  rgba(220, 74, 34, 0.05) 100%);
       background-size: 200% 100%;
       animation: gradient-x 5s ease-in-out infinite;
@@ -241,9 +241,9 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background: linear-gradient(to right, 
-                 var(--brand-500), 
-                 var(--brandcomp-500), 
+      background: linear-gradient(to right,
+                 var(--brand-500),
+                 var(--brandcomp-500),
                  var(--brand-500));
       background-size: 200% 100%;
       animation: gradient-x 5s ease-in-out infinite;
@@ -262,9 +262,9 @@
       }
 
       .error-card::before {
-        background: linear-gradient(90deg, 
-                   rgba(220, 74, 34, 0.1) 0%, 
-                   rgba(35, 181, 221, 0.15) 50%, 
+        background: linear-gradient(90deg,
+                   rgba(220, 74, 34, 0.1) 0%,
+                   rgba(35, 181, 221, 0.15) 50%,
                    rgba(220, 74, 34, 0.1) 100%);
       }
 
@@ -292,7 +292,7 @@
       .error-card {
         padding: 1.5rem;
       }
-      
+
       .error-code {
         font-size: 3rem;
       }
@@ -321,13 +321,13 @@
   <div class="container">
     <div class="error-card" role="alert">
       <div class="animated-border"></div>
-      
+
       <div class="header">
-        <h1 class="brand-text" style="font-size: 2rem; margin-bottom: 1rem;">One Time Secret</h1>
+        <h1 class="brand-text" style="font-size: 2rem; margin-bottom: 1rem;">Onetime Secret</h1>
       </div>
-      
+
       <!-- Choose ONE of these blocks based on error type -->
-      
+
       <!-- IP/Country Block -->
       <!-- <div>
         <div class="error-code">403</div>
@@ -335,17 +335,19 @@
         <p class="error-description">Sorry, your access to this resource has been restricted.</p>
         ::GEO::
       </div> -->
-      
+
       <!-- Interactive Challenge -->
-      <!-- <div>
+      <div>
         <div class="error-code">429</div>
-        <h2 class="error-title">Verification Required</h2>
+        <!--<h2 class="error-title">Verification Required</h2>-->
         <p class="error-description">Please complete the security check to continue.</p>
+        <br><br>
         <div class="captcha-container">
           ::CAPTCHA_BOX::
         </div>
-      </div> -->
-      
+        <br><br>
+      </div>
+
       <!-- JS Challenge -->
       <!-- <div>
         <div class="error-code">1020</div>
@@ -353,15 +355,15 @@
         <p class="error-description">Please wait while we verify your browser.</p>
         ::IM_UNDER_ATTACK_BOX::
       </div> -->
-      
+
       <!-- 5XX Errors -->
-      <div>
+      <!--<div>
         <div class="error-code">500</div>
         <h2 class="error-title">Server Error</h2>
         <p class="error-description">Sorry, something went wrong on our server. We're working to fix the issue.</p>
         ::CLOUDFLARE_ERROR_500S_BOX::
-      </div>
-      
+      </div>-->
+
       <!-- 1XXX Errors -->
       <!-- <div>
         <div class="error-code">1001</div>
@@ -369,17 +371,17 @@
         <p class="error-description">There was a problem connecting to the website.</p>
         ::CLOUDFLARE_ERROR_1000S_BOX::
       </div> -->
-      
+
       <div class="diagnostic-info">
         <p><strong>Client IP:</strong> ::CLIENT_IP::</p>
         <p><strong>Ray ID:</strong> ::RAY_ID::</p>
       </div>
-      
-      <a href="/" class="action-button">Return to Homepage</a>
+
+      <a href="https://onetimesecret.com/" class="action-button">Return to Homepage</a>
     </div>
-    
+
     <div class="footer">
-      <p>&copy; 2025 One Time Secret. All rights reserved.</p>
+      <p>&copy; 2025 Onetime Secret. All rights reserved.</p>
     </div>
   </div>
 
@@ -388,7 +390,7 @@
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add('dark');
     }
-    
+
     // Listen for changes in color scheme preference
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
       if (event.matches) {
