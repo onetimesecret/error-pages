@@ -7,7 +7,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 
 const { t, locale } = useI18n();
 
-const startTime = ref('2024-07-30T02:45:00Z');
+const startTime = ref('2024-08-08T02:40:00Z');
 const estimatedTime = ref('60 minutes');
 
 // Update document lang attribute when locale changes
@@ -30,7 +30,7 @@ watch(locale, (newLocale) => {
         <div class="text-center">
           <router-link to="/">
             <ActiveLogo
-              class="mx-auto h-12 w-12"
+              class="mx-auto h-12 w-12 rounded"
               :pulse-rate="3"
             />
           </router-link>
@@ -45,16 +45,20 @@ watch(locale, (newLocale) => {
           <div class="px-4 py-5 sm:p-6">
             <div class="text-gray-700 dark:text-gray-300 space-y-6">
               <p class="text-lg">
-                {{ t('message') }}
+                <a href="https://docs.onetimesecret.com/blog/2024-09-09-denial-of-service" title="More information about the DDoS attack in this blog post from Sept 9th, 2024" target="_blank">{{ t('message') }}</a>
               </p>
-              <ProgressBar
+              <!-- <ProgressBar
                 :start-time="startTime"
                 :duration="estimatedTime"
-              />
+              /> -->
+              <p>
+                See our <a href="https://docs.onetimesecret.com/blog/2024-09-09-denial-of-service" title="More information about the DDoS attack in this blog post from Sept 9th, 2024" target="_blank" class="text-brandcomp-600 hover:text-brandcomp-800 dark:text-brandcomp-400 dark:hover:text-brandcomp-200 underline focus:outline-none focus:ring-2 focus:ring-brandcomp-500 dark:focus:ring-brandcomp-400 rounded">blog post</a> for more details.
+              </p>
             </div>
             <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
               <p class="text-gray-600 font-medium text-base">
                 {{ t('thankYou') }}
+                <!-- See our <a href="https://docs.onetimesecret.com/blog/2024-09-09-denial-of-service" title="More information about the DDoS attack in this blog post from Sept 9th, 2024" target="_blank">blog post for more details</a>. -->
               </p>
             </div>
           </div>

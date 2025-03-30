@@ -61,3 +61,4 @@ spoom_*
 !pr_agent.toml
 etc/config
 .prompts
+.qodo

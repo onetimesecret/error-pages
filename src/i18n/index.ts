@@ -4,7 +4,7 @@ const messages = {
   en: {
     logoAlt: 'Onetime Secret Logo',
     title: 'Site Maintenance',
-    message: 'We are currently performing scheduled maintenance. Please check back soon.',
+    message: 'We have been experienceing a Denial of Service attack since the early morning on Sep 9, 2024 (PDT). More information is posted on our blog.',
     estimatedTime: 'Estimated time',
     thankYou: 'Thank you for your patience.',
     statusPage: 'Check our status page for updates',
@@ -36,8 +36,7 @@ const messages = {
   fr: {
     logoAlt: 'Logo Onetime Secret',
     title: 'Maintenance du Site',
-    message:
-      'Nous effectuons actuellement une maintenance programmée. Nous devrions être de retour sous peu.',
+    message: 'Nous effectuons actuellement une maintenance programmée. Nous devrions être de retour sous peu.',
     estimatedTime: 'Temps estimé',
     thankYou: 'Merci pour votre patience.',
     statusPage: 'Consultez notre page de statut pour les mises à jour',

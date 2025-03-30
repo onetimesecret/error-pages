@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for error-pages on 2024-09-09T22:33:58-07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'error-pages'
+primary_region = 'ams'
+
+[build]
+  dockerfile = 'Dockerfile.production'
+
+[deploy]
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'suspend'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'performance-2x'
